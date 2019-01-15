@@ -1,14 +1,8 @@
-import { mongoose } from 'mongoose';
-import { Document, Schema, Model } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-export interface ITask extends Document {
-  title: string;
-  desc?: string; 
-};
+let schema: Schema = new Schema({
+  title: String,
+  desc: String,
+})
 
-export const TaskSchema = new Schema({
-  title: {type:String, required: true},
-  somethingElse: String,
-});
-
-export const Task = mongoose.model<ITask>('Task', TaskSchema);
+export const Task =  model('Task', schema);

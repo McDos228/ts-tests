@@ -17,19 +17,24 @@ class AuthRouter {
     }
     signUp(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newUser = yield auth_1.default.signUp(req.body);
-            // if(newUser) res.json(newUser)
-            // else 
-            // res.json({message:'Some errors'})
-            res.json(newUser);
+            try {
+                const newUser = yield auth_1.default.signUp(req.body);
+                res.json(newUser);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     signIn(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield auth_1.default.signIn(req.body.name);
-            // if(user) res.json(user)
-            // else 
-            res.json({ message: 'Some errors' });
+            try {
+                const user = yield auth_1.default.signIn(req.body);
+                res.json(user);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     init() {

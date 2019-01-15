@@ -9,15 +9,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../../models/user");
+const bcrypt = require("bcryptjs");
+const config_1 = require("../../config");
+const jwt = require("jsonwebtoken");
+const salt = bcrypt.genSaltSync(10);
 class Auth {
     static signUp(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield user_1.User.create(data);
+            try {
+                let password = bcrypt.hashSync(data.password, salt);
+                return yield user_1.User.create({
+                    name: data.name,
+                    password
+                });
+            }
+            catch (error) {
+                return error;
+            }
         });
     }
-    static signIn(name) {
+    static signIn({ name, password }) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield user_1.User.findOne({ name });
+            try {
+                const user = yield user_1.User.findOne({ name });
+                // let pass : number = bcrypt.hashSync(password, salt);
+                // console.log(password, user.password)
+                console.log(user);
+                if (user && bcrypt.compareSync(password, user.password))
+                    return {
+                        name: user.name,
+                        token: jwt.sign({ user }, config_1.Config.secret)
+                    };
+                else
+                    return { message: 'no user found' };
+            }
+            catch (error) {
+                console.log('sss', error);
+                return error;
+            }
         });
     }
 }

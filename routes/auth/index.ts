@@ -21,7 +21,7 @@ class AuthRouter {
 
     public async signIn(req: Request, res: Response, next: NextFunction) {
         try {
-            const user = await Auth.signIn(req.body.name);    
+            const user = await Auth.signIn(req.body);    
             res.json(user)
         } catch (error) {
             res.json(error)   

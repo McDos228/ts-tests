@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const mongoose_2 = require("mongoose");
-;
-exports.TaskSchema = new mongoose_2.Schema({
-    title: { type: String, required: true },
-    somethingElse: String,
+let schema = new mongoose_1.Schema({
+    title: String,
+    desc: String,
 });
-exports.Task = mongoose_1.mongoose.model('Task', exports.TaskSchema);
+exports.Task = mongoose_1.model('Task', schema);

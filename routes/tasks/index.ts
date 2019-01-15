@@ -8,12 +8,21 @@ class Task {
         this.init();
     }
 
-    public createTask (req: Request, res: Response, next:NextFunction){
-        console.log('Create Task')
+    public async createTask (req: Request, res: Response, next:NextFunction){
+        try {
+            res.json({message:'Create Task'})
+        } catch (error) {
+            res.json(error)
+        }
+        
     }
 
-    public listTask (req: Request, res: Response, next:NextFunction){
-        console.log('List Task')
+    public async listTask (req: Request, res: Response, next:NextFunction){
+        try {
+            res.json({message:'List Tasks'})    
+        } catch (error) {
+            res.json(error)
+        }
     }
 
     public init(){
