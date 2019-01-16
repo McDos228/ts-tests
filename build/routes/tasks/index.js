@@ -31,6 +31,7 @@ class TaskRouter {
     listTask(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log(req.user.user, 'sdasdsa');
                 const userId = req.query.userId;
                 const viewTask = yield tasks_1.Tasks.viewTaskList(userId);
                 if (!viewTask)

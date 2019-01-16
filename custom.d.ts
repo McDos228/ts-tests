@@ -1,5 +1,9 @@
-declare namespace Express {
-    export interface Request {
-       user?: string
-    }
+import * as Express from 'express';
+
+declare global {
+   namespace Express {
+     interface Request {
+       user: Object
+     }
+   }
  }

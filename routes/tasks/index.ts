@@ -1,6 +1,14 @@
 import {Request, Response, Router, NextFunction} from 'express';
 import {Tasks} from '../../service/tasks';
 
+declare global {
+    namespace Express {
+        interface Request {
+            user: Object
+        }
+    }
+}
+
 class TaskRouter {
 
     public router: Router = Router();
@@ -11,7 +19,7 @@ class TaskRouter {
 
     public async createTask (req: Request, res: Response, next:NextFunction){
         try {
-            const newTask = await Tasks.createTask(req.body);
+            const newTask = await Tasks.createTask({...req.body, ...req.user});
             if(!newTask) res.json({message:'some error'})
             res.json(newTask)
         } catch (error) {
@@ -21,6 +29,9 @@ class TaskRouter {
 
     public async listTask (req: Request, res: Response, next:NextFunction){
         try {
+
+            console.log(req.user, 'sdasdsa')
+
             const userId = req.query.userId;
             const viewTask = await Tasks.viewTaskList(userId);
             if(!viewTask) res.json({message:'some error'})
