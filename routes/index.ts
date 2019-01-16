@@ -14,7 +14,7 @@ class MainRoutes {
     private config(): void {
         this.router.use('/auth', auth);
         this.router.use('/tasks', AuthHelper.isAuth, task);
-        // this.router.use('/dashboard', admin);
+        this.router.use('/dashboard', AuthHelper.isAdmin, admin);
     }
 }
 

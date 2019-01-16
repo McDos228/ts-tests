@@ -26,4 +26,20 @@ export default class AdminHelper {
             return error
         }
     }
+
+    public static async updateItem(target, data){
+        try {
+            return target == 'task'? await Task.update(data) : await User.update(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    public static async deleteItem(target, id){
+        try {
+            return target == 'task'? await Task.deleteOne({_id:id}) : await User.deleteOne({_id:id})
+        } catch (error) {
+            return error
+        }
+    }
 }

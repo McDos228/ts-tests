@@ -32,7 +32,7 @@ class AdminRouter {
 
     public async addUser(req: Request, res: Response, next: NextFunction) {
         try {
-            const newUser = await AdminHelper.addItem('task', req.body);
+            const newUser = await AdminHelper.addItem('user', req.body);
             if(!newUser) return {message: 'error'}
             res.json({newUser})
         } catch (error) {
@@ -42,7 +42,9 @@ class AdminRouter {
 
     public async addTask(req: Request, res: Response, next: NextFunction) {
         try {
-            
+            const newTask = await AdminHelper.addItem('task', req.body);
+            if(!newTask) return {message: 'error'}
+            res.json({newTask})
         } catch (error) {
             res.json(error)   
         }
@@ -50,7 +52,9 @@ class AdminRouter {
 
     public async updateTask(req: Request, res: Response, next: NextFunction) {
         try {
-           
+            const updatedTask = await AdminHelper.updateItem('task', req.body);
+            if(!updatedTask) return {message: 'error'}
+            res.json({updatedTask})
         } catch (error) {
             res.json(error)   
         }
@@ -58,7 +62,9 @@ class AdminRouter {
 
     public async updateUser(req: Request, res: Response, next: NextFunction) {
         try {
-            
+            const updatedUser = await AdminHelper.updateItem('user', req.body);
+            if(!updatedUser) return {message: 'error'}
+            res.json({updatedUser})
         } catch (error) {
             res.json(error)   
         }
@@ -66,7 +72,9 @@ class AdminRouter {
 
     public async deleteTask(req: Request, res: Response, next: NextFunction) {
         try {
-            
+            const deletedTask = await AdminHelper.deleteItem('task', req.body);
+            if(!deletedTask) return {message: 'error'}
+            res.json({deletedTask})
         } catch (error) {
             res.json(error)   
         }
@@ -74,7 +82,9 @@ class AdminRouter {
 
     public async deleteUser(req: Request, res: Response, next: NextFunction) {
         try {
-            
+            const deletedUser = await AdminHelper.deleteItem('user', req.body);
+            if(!deletedUser) return {message: 'error'}
+            res.json({deletedUser})
         } catch (error) {
             res.json(error)   
         }
@@ -82,10 +92,10 @@ class AdminRouter {
 
     init(){
         this.router
-            .get('/user/list', this.userList)
-            .get('/task/list', this.taskList)
             .post('/task/add', this.addTask)
             .post('/user/add', this.addUser)
+            .get('/user/list', this.userList)
+            .get('/task/list', this.taskList)
             .put('/task/update', this.updateTask)
             .put('/user/update', this.updateUser)
             .delete('/user/delte', this.deleteUser)
