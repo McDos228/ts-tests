@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-class Task {
+const tasks_1 = require("../../service/tasks");
+class TaskRouter {
     constructor() {
         this.router = express_1.Router();
         this.init();
@@ -17,7 +18,10 @@ class Task {
     createTask(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                res.json({ message: 'Create Task' });
+                const newTask = yield tasks_1.Tasks.createTask(req.body);
+                if (!newTask)
+                    res.json({ message: 'some error' });
+                res.json(newTask);
             }
             catch (error) {
                 res.json(error);
@@ -27,7 +31,35 @@ class Task {
     listTask(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                res.json({ message: 'List Tasks' });
+                const userId = req.query.userId;
+                const viewTask = yield tasks_1.Tasks.viewTaskList(userId);
+                if (!viewTask)
+                    res.json({ message: 'some error' });
+                res.json(viewTask);
+            }
+            catch (error) {
+                res.json(error);
+            }
+        });
+    }
+    updateTask(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                res.json({ message: 'Update Task' });
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    deleteTask(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const deletedTask = yield tasks_1.Tasks.deleteTask(req.body.id);
+                if (!deletedTask)
+                    return { message: 'some error' };
+                else
+                    res.json(deletedTask);
             }
             catch (error) {
                 res.json(error);
@@ -37,7 +69,9 @@ class Task {
     init() {
         this.router
             .post('/', this.createTask)
-            .get('/', this.listTask);
+            .get('/', this.listTask)
+            .put('/', this.updateTask)
+            .delete('/', this.deleteTask);
     }
 }
-exports.task = new Task().router;
+exports.task = new TaskRouter().router;

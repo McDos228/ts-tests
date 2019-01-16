@@ -21,14 +21,14 @@ export default class Auth {
     public static async signIn ({name, password}) {
         try {
             const user = await User.findOne({name});
-            console.log(user)
-            if (user && bcrypt.compareSync(password, user.password)) 
+            if(!user) return {message:'no user found'};
+            if (bcrypt.compareSync(password, user.password))
                 return {
                     name : user.name,
                     token : jwt.sign({user}, Config.secret)
                 }
             else 
-                return {message:'no user found'}    
+                return {message:'password not equal'};
         } catch (error) {
             return error
         }   

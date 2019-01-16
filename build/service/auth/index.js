@@ -32,19 +32,17 @@ class Auth {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = yield user_1.User.findOne({ name });
-                // let pass : number = bcrypt.hashSync(password, salt);
-                // console.log(password, user.password)
-                console.log(user);
-                if (user && bcrypt.compareSync(password, user.password))
+                if (!user)
+                    return { message: 'no user found' };
+                if (bcrypt.compareSync(password, user.password))
                     return {
                         name: user.name,
                         token: jwt.sign({ user }, config_1.Config.secret)
                     };
                 else
-                    return { message: 'no user found' };
+                    return { message: 'password not equal' };
             }
             catch (error) {
-                console.log('sss', error);
                 return error;
             }
         });
