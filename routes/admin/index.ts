@@ -1,6 +1,14 @@
 import {Request, Response, Router, NextFunction} from 'express';
 import AdminHelper from '../../service/admin/';
 
+declare global {
+    namespace Express {
+        interface Request {
+            user: Object
+        }
+    }
+}
+
 class AdminRouter {
 
     public router: Router = Router();

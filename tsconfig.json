@@ -19,8 +19,5 @@
       "scripthost",
       "es2015.promise"
     ]
-  },
-  "files": [
-    "custom.d.ts"
-  ]
+  }
 }

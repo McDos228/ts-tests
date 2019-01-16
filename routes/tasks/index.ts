@@ -29,10 +29,7 @@ class TaskRouter {
 
     public async listTask (req: Request, res: Response, next:NextFunction){
         try {
-
-            console.log(req.user, 'sdasdsa')
-
-            const userId = req.query.userId;
+            const userId : number = req.query.userId;
             const viewTask = await Tasks.viewTaskList(userId);
             if(!viewTask) res.json({message:'some error'})
             res.json(viewTask)
@@ -43,6 +40,9 @@ class TaskRouter {
 
     public async updateTask (req: Request, res: Response, next:NextFunction){
         try {
+            const updatedTask = await Tasks.updateTask(req.body);
+            if(!updatedTask) res.json({message: 'some error'})
+            res.json({updatedTask})
             res.json({message:'Update Task'})
         } catch (error) {
             return error

@@ -11,7 +11,8 @@ export default class Auth {
             let password : number = bcrypt.hashSync(data.password, salt);
             return await User.create({
                 name : data.name,
-                password
+                password,
+                role: 'user'
             })
         } catch (error) {
             return error

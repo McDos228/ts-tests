@@ -1,6 +1,14 @@
 import {Config} from '../config';
 import * as jwt from 'jsonwebtoken';
 
+declare global {
+    namespace Express {
+        interface Request {
+            user: Object
+        }
+    }
+}
+
 export class AuthHelper {
     public static async isAuth(req, res, next){
         if (!req.headers && !req.headers.token)
@@ -13,7 +21,7 @@ export class AuthHelper {
     }
 
     public static async isAdmin(req, res, next){
-        if(req.user.role!='admin') return {message : 'only admin can view this page'}
+        if(req.user.role!='admin') return res.status(401).json({message : 'only admin can view this page'})
         next()
     }
 }

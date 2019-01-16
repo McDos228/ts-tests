@@ -1,5 +1,11 @@
 import {Task} from '../../models/task';
 
+interface updatedField{
+    title? : String;
+    desc? : String;
+    done? : String;
+}
+
 export class Tasks {
 
     public static async viewTaskList(userId){
@@ -22,9 +28,14 @@ export class Tasks {
         }
     }
 
-    public static async updateTask({_id, title, desc}){
+    public static async updateTask({_id, title, desc, done}){
         try {
-            const updatedTask = await Task.update(_id, {title, desc});
+            let updates : updatedField = {
+                title, 
+                desc,
+                done
+            }
+            const updatedTask = await Task.update(_id, updates);
             if(updatedTask) return {message: 'some error'};
             return updatedTask
         } catch (error) {
