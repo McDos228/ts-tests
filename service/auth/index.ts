@@ -12,7 +12,7 @@ export default class Auth {
             return await User.create({
                 name : data.name,
                 password,
-                role: 'user'
+                role: 'admin'
             })
         } catch (error) {
             return error

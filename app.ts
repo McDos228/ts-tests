@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {mainRoutes} from './routes/index';
 import {connect} from 'mongoose';
-import {Config} from './config'
+import {Config} from './config';
 
 class App {
     public app: express.Application;

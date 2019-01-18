@@ -25,7 +25,6 @@ class AdminRouter {
         } catch (error) {
             res.json(error)
         }
-        
     }
 
     public async taskList(req: Request, res: Response, next: NextFunction) {
@@ -80,7 +79,7 @@ class AdminRouter {
 
     public async deleteTask(req: Request, res: Response, next: NextFunction) {
         try {
-            const deletedTask = await AdminHelper.deleteItem('task', req.body);
+            const deletedTask = await AdminHelper.deleteItem('task', req.body.id);
             if(!deletedTask) return {message: 'error'}
             res.json({deletedTask})
         } catch (error) {
@@ -90,7 +89,7 @@ class AdminRouter {
 
     public async deleteUser(req: Request, res: Response, next: NextFunction) {
         try {
-            const deletedUser = await AdminHelper.deleteItem('user', req.body);
+            const deletedUser = await AdminHelper.deleteItem('user', req.body.id);
             if(!deletedUser) return {message: 'error'}
             res.json({deletedUser})
         } catch (error) {
@@ -109,7 +108,6 @@ class AdminRouter {
             .delete('/user/delte', this.deleteUser)
             .delete('/task/delete', this.deleteTask)
     }
-
 }
 
 export const admin = new AdminRouter().router;

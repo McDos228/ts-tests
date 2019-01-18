@@ -7,7 +7,9 @@ export default class AdminHelper {
 
     public static async listItems(target){
         try {
-            return target == 'task'? await Task.find() : await User.find()            
+            return target == 'task'? 
+                await Task.find() : 
+                await User.find()            
         } catch (error) {
             return error
         }
@@ -15,13 +17,15 @@ export default class AdminHelper {
 
     public static async addItem(target, data){
         try {
-            let password : number = bcrypt.hashSync(data.password, salt);
-            return target == 'task'? 
-                await Task.create(data) : 
-                await User.create({
+            if(target === 'task')
+                return await Task.create(data)
+            else if(target === 'user'){
+                let password = bcrypt.hashSync(data.password, salt);
+                return await User.create({
                     name : data.name,
                     password
                 })
+            }
         } catch (error) {
             return error
         }
@@ -29,7 +33,9 @@ export default class AdminHelper {
 
     public static async updateItem(target, data){
         try {
-            return target == 'task'? await Task.update(data) : await User.update(data)
+            return target === 'task'? 
+                await Task.update({_id:data.id}, data) : 
+                await User.update({_id:data.id}, data)
         } catch (error) {
             return error
         }
@@ -37,7 +43,9 @@ export default class AdminHelper {
 
     public static async deleteItem(target, id){
         try {
-            return target == 'task'? await Task.deleteOne({_id:id}) : await User.deleteOne({_id:id})
+            return target === 'task'? 
+                await Task.deleteOne({_id:id}) : 
+                await User.deleteOne({_id:id})
         } catch (error) {
             return error
         }

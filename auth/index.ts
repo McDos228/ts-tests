@@ -21,7 +21,7 @@ export class AuthHelper {
     }
 
     public static async isAdmin(req, res, next){
-        if(req.user.role!='admin') return res.status(401).json({message : 'only admin can view this page'})
-        next()
+        if(req.user.user.role!='admin') return res.status(401).json({message : 'only admin can view this page'})
+        next();
     }
 }
