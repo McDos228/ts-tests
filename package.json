@@ -1,7 +1,6 @@
 {
   "name": "ts-test",
   "version": "1.0.0",
-  "description": "",
   "scripts": {
     "start": "nodemon build/server.js"
   },
@@ -15,6 +14,18 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.3",
+    "nodemailer": "^5.1.1",
     "nodemon": "^1.18.9"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/McDos228/ts-tests.git"
+  },
+  "bugs": {
+    "url": "https://github.com/McDos228/ts-tests/issues"
+  },
+  "homepage": "https://github.com/McDos228/ts-tests#readme",
+  "description": ""
 }

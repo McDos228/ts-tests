@@ -23,7 +23,8 @@ export default class AdminHelper {
                 let password = bcrypt.hashSync(data.password, salt);
                 return await User.create({
                     name : data.name,
-                    password
+                    password,
+                    email : data.email
                 })
             }
         } catch (error) {
