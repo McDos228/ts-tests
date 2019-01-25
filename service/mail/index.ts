@@ -19,12 +19,14 @@ export default class Emails {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                  user: Config.mailAcc.user,
-                  pass: Config.mailAcc.pass
-                }
+                    user: Config.mailAcc.user,
+                    pass: Config.mailAcc.pass
+                },
+                tls: { rejectUnauthorized: false }
             })
 
-            transporter.sendMail(mailData);
+            return await transporter.sendMail(mailData);
+            
         } catch (error) {
             console.log('aaaaa', error)
             return error

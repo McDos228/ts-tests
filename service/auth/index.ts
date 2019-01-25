@@ -46,24 +46,5 @@ export default class Auth {
         }   
     }
 
-    public static async forgotPassword(email) {
-        try {
-            const user = await User.findOne({email});
-            if(!user) return {message:'no user found'};
-            else {
-                const token = jwt.sign({name : user.name, email : user.email}, Config.secret);
-                const mailObj = await Emails.setMailObject({
-                    to : user.email,
-                    subject: 'Change password',
-                    text : `Visit this url : http://localhost${Config.port}/reset/${token}`
-                })
-
-                await Emails.sendMail(mailObj);
-            }
-        } catch (error) {
-            console.log('dayn', error)
-            return error
-        }
-        
-    }
+    
 }

@@ -28,22 +28,10 @@ class AuthRouter {
         }
     }
 
-    public async resetPass(req: Request, res: Response, next: NextFunction) {
-        try {
-            // const {email} = req.user;
-            const resetPassword = await Auth.forgotPassword('canyon2011@ukr.net');
-            if(resetPassword) 
-                res.json({message : 'test'})
-        } catch (error) {
-            res.json(error)
-        }
-    }
-
     init(){
         this.router
             .post('/signup', this.signUp)
             .post('/signin', this.signIn)
-            .get('/resetpass', this.resetPass)
     }
 
 }
