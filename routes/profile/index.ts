@@ -1,32 +1,41 @@
-import {Request, Response, Router, NextFunction} from 'express';
-import ProfileService from '../../service/profile';
+// import {Request, Response, Router, NextFunction} from 'express';
+// import ProfileService from '../../service/profile';
 
-class ProfileRoutes {
+// class ProfileRoutes {
 
-    public router: Router = Router();
+//     public router: Router = Router();
 
-    constructor() {
-        this.init();
-    }
+//     constructor() {
+//         this.init();
+//     }
 
-    public async getProfile(req: Request, res: Response, next: NextFunction){}
+//     public async getProfile(req: Request, res: Response, next: NextFunction){}
 
-    public async resetPass(req: Request, res: Response, next: NextFunction) {
-        try {
-            const resetPassword = await ProfileService.forgotPassword(req.user);
-            if(resetPassword)
-                res.json({response : resetPassword.response})
-        } catch (error) {
-            res.json(error)
-        }
-    }
+//     public async forgotPass(req: Request, res: Response, next: NextFunction) {
+//         try {
+//             const resetPassword = await ProfileService.forgotPassword(req.user);
+//             if(resetPassword)
+//                 res.json({response : resetPassword.response})
+//         } catch (error) {
+//             res.json(error)
+//         }
+//     }
 
-    init(){
-        this.router
-            .get('/', this.getProfile)
-            .get('/resetpass', this.resetPass)
-    }
+//     public async resetPass(req: Request, res: Response, next: NextFunction) {
+//         try {
+            
+//         } catch (error) {
+//             res.json(error)
+//         }
+//     }
 
-}
+//     init(){
+//         this.router
+//             .get('/', this.getProfile)
+//             .get('/forgotpass', this.forgotPass)
+//             .get('/resetpass/:token', this.resetPass)
+//     }
 
-export const profile = new ProfileRoutes().router;
+// }
+
+// export const profile = new ProfileRoutes().router;

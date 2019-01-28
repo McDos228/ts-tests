@@ -3,7 +3,8 @@ import {AuthHelper} from '../auth/';
 import { task } from './tasks/';
 import { auth } from './auth/';
 import { admin } from './admin/';
-import { profile } from './profile/'
+import { video } from './video';
+// import { profile } from './profile/'
 
 class MainRoutes {
     public router: express.Router = express.Router();
@@ -16,7 +17,8 @@ class MainRoutes {
         this.router.use('/auth', auth);
         this.router.use('/tasks', AuthHelper.isAuth, task);
         this.router.use('/dashboard', AuthHelper.isAuth, AuthHelper.isAdmin, admin);
-        this.router.use('/profile', AuthHelper.isAuth, profile);
+        // this.router.use('/profile', AuthHelper.isAuth, profile);
+        this.router.use('/video', video);
     }
 }
 

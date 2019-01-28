@@ -28,10 +28,32 @@ class AuthRouter {
         }
     }
 
+    public async forgotPass(req: Request, res: Response, next: NextFunction) {
+        try {
+            const forgotPassword = await Auth.forgotPassword(req.body.email);
+            if(!forgotPassword) res.json({message: 'some error'})
+            else res.json(forgotPassword)
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
+    public async resetPass(req: Request, res: Response, next: NextFunction) {
+        try {
+            const newPass = await Auth.resetPassowrd(req.params.token, req.body.password);
+            if(!newPass) res.json({message: 'some error'})
+            else res.json(newPass)
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
     init(){
         this.router
             .post('/signup', this.signUp)
             .post('/signin', this.signIn)
+            .post('/forgotpass', this.forgotPass)
+            .post('/resetpass/:token', this.resetPass)
     }
 
 }

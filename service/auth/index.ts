@@ -46,5 +46,42 @@ export default class Auth {
         }   
     }
 
-    
+    public static async forgotPassword(email) {
+        try {
+            const user = await User.findOne({email});
+            if(!user) return {message:'no user found'};
+            else {
+                const token = jwt.sign({name : user.name, email : user.email}, Config.secret);
+                const mailObj = await Emails.setMailObject({
+                    to : user.email,
+                    subject : 'Change password',
+                    text : `Visit this url for change your password: http://${Config.host}:${Config.port}/auth/resetpass/${token}`
+                })
+
+                const sendedEmail = await Emails.sendMail(mailObj);
+                await User.update({_id: user._id}, {resetToken : token});
+                return sendedEmail
+            }
+        } catch (error) {
+            console.log(error)
+            return error
+        }   
+    }
+
+    public static async resetPassowrd(token, password){
+        try {
+
+            let pass : number = bcrypt.hashSync(password, salt);
+
+            const user = await User.findOne({resetToken : token});
+            if(!user) 
+                return {message:'no user found'};
+            if(user.resetToken === null) 
+                return {message:'auth error, you don`t have permition visit this page'};
+            else
+                return await User.update({resetToken : token}, {password: pass, resetToken : null});
+        } catch (error) {
+            return error
+        }
+    }
 }
