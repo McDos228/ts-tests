@@ -13,21 +13,26 @@ class VideoRouter {
 
     public async uploadVideo(req: Request, res: Response, next: NextFunction) {
         try {
-            const savedVideo = await VideoService.saveVideo(path.join(`${__dirname}/uploads/${req.file.filename}`), req.user.user._id)
-            // const newUser = await Auth.signUp(req.body);
-            // res.json(newUser)    
+            const savedVideo = await VideoService.saveVideo(path.join(`${__dirname}/uploads/${req.file.filename}`), req.user.user._id);
+            if(!savedVideo) res.json({msg : 'some error'})
+            else res.json(savedVideo)
         } catch (error) {
             res.json(error)
         }
-        
+    }
+
+    public async deleteVideo(req: Request, res: Response, next: NextFunction) {
+        try {
+            
+        } catch (error) {
+            res.json(error)
+        }
     }
 
     init(){
         this.router
             .post('/', upload.single('video'), this.uploadVideo)
-            // .post('/signin', this.signIn)
-            // .post('/forgotpass', this.forgotPass)
-            // .post('/resetpass/:token', this.resetPass)
+            .delete('/:id', this.deleteVideo)
     }
 }
 
