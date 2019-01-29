@@ -8,9 +8,20 @@ export default class Emails {
             from,
             to,
             subject,
-            text
-        }
+            text,
+            html:
+            '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
+            '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
 
+        attachments: [
+            
+            {
+                filename: 'nyan cat ✔.gif',
+                path: __dirname + '/nyan.gif',
+                cid: 'nyan@example.com'
+            }
+        ],
+        }
         return mailOptions
     }
 
@@ -24,9 +35,7 @@ export default class Emails {
                 },
                 tls: { rejectUnauthorized: false }
             })
-
             return await transporter.sendMail(mailData);
-            
         } catch (error) {
             console.log('aaaaa', error)
             return error
