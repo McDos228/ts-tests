@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "a369352a-1860-455f-b2a2-8a1eb9a12b5e",
+		"name": "ts-tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"canyon2011@ukr.net\",\n\t\"name\":\"name\",\n\t\"password\":\"name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"canyon2011@ukr.net\",\n\t\"name\":\"name\",\n\t\"password\":\"name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "reset pass request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjNGIwOGNiNTEyNGFiMWNiMjgyNTM2ZiIsIm5hbWUiOiJuYW1lIiwiZW1haWwiOiJjYW55b24yMDExQHVrci5uZXQiLCJwYXNzd29yZCI6IiQyYSQxMCRIbkdSOEZVSzRqMEUybmJJOXp3aTF1WmIvTVRRVVpMWUROTTJhSmI4UDNWMS9FaE1PT3BSLiIsInJvbGUiOiJhZG1pbiIsInJlc2V0VG9rZW4iOm51bGwsIl9fdiI6MH0sImlhdCI6MTU0ODQyMTM2OH0.L08lhE-UGDvIv3kuTUQbAeIVEt6qRAU4ewk9fvB8r8E",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"admin title\",\n\t\"desc\":\"create in dashboard\",\n\t\"done\":false,\n\t\"userId\":\"5c402658dbedfc11c230632c\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/profile/resetpass",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								"resetpass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "update task by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjNjY3NjM2ZmQ0M2JmMmQyMTIwMTBiMCIsIm5hbWUiOiJuYXNzc3NtZSIsImVtYWlsIjoiY2Fuc3lvbjIwMTFAdWtyLm5ldCIsInBhc3N3b3JkIjoiJDJhJDEwJEY5SGxqTmk0WWF0SHVtYy93T1M5d08uNnNZdFhKbjMyN1AzN2RGcEdYYUJsMFZQRVFtTkl5Iiwicm9sZSI6ImFkbWluIiwicmVzZXRUb2tlbiI6bnVsbCwiX192IjowfSwiaWF0IjoxNTUwMjE4ODIxfQ.RnoR5WHYLS1PnBEZncfEJim8w-VegJONq8eFKkKoUcc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"5c66774ffd43bf2d212010b1\",\n\t\"title\":\"task3222222\",\n\t\"desc\":\"cool task, yopta\",\n\t\"done\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjNjY3NjM2ZmQ0M2JmMmQyMTIwMTBiMCIsIm5hbWUiOiJuYXNzc3NtZSIsImVtYWlsIjoiY2Fuc3lvbjIwMTFAdWtyLm5ldCIsInBhc3N3b3JkIjoiJDJhJDEwJEY5SGxqTmk0WWF0SHVtYy93T1M5d08uNnNZdFhKbjMyN1AzN2RGcEdYYUJsMFZQRVFtTkl5Iiwicm9sZSI6ImFkbWluIiwicmVzZXRUb2tlbiI6bnVsbCwiX192IjowfSwiaWF0IjoxNTUwMjE4ODIxfQ.RnoR5WHYLS1PnBEZncfEJim8w-VegJONq8eFKkKoUcc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"task3222222\",\n\t\"desc\":\"cool task, yopssta\",\n\t\"done\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjNjY3NjM2ZmQ0M2JmMmQyMTIwMTBiMCIsIm5hbWUiOiJuYXNzc3NtZSIsImVtYWlsIjoiY2Fuc3lvbjIwMTFAdWtyLm5ldCIsInBhc3N3b3JkIjoiJDJhJDEwJEY5SGxqTmk0WWF0SHVtYy93T1M5d08uNnNZdFhKbjMyN1AzN2RGcEdYYUJsMFZQRVFtTkl5Iiwicm9sZSI6ImFkbWluIiwicmVzZXRUb2tlbiI6bnVsbCwiX192IjowfSwiaWF0IjoxNTUwMjE4ODIxfQ.RnoR5WHYLS1PnBEZncfEJim8w-VegJONq8eFKkKoUcc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"task3222222\",\n\t\"desc\":\"cool task, yopssta\",\n\t\"done\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "task by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjNjY3NjM2ZmQ0M2JmMmQyMTIwMTBiMCIsIm5hbWUiOiJuYXNzc3NtZSIsImVtYWlsIjoiY2Fuc3lvbjIwMTFAdWtyLm5ldCIsInBhc3N3b3JkIjoiJDJhJDEwJEY5SGxqTmk0WWF0SHVtYy93T1M5d08uNnNZdFhKbjMyN1AzN2RGcEdYYUJsMFZQRVFtTkl5Iiwicm9sZSI6ImFkbWluIiwicmVzZXRUb2tlbiI6bnVsbCwiX192IjowfSwiaWF0IjoxNTUwMjE4ODIxfQ.RnoR5WHYLS1PnBEZncfEJim8w-VegJONq8eFKkKoUcc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/?id=5c667a4d8d60c831924a5632",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c667a4d8d60c831924a5632"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

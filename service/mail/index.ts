@@ -10,17 +10,16 @@ export default class Emails {
             subject,
             text,
             html:
-            '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
-            '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
+                '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
+                '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
 
-        attachments: [
-            
-            {
-                filename: 'nyan cat ✔.gif',
-                path: __dirname + '/nyan.gif',
-                cid: 'nyan@example.com'
-            }
-        ],
+                attachments: [
+                    {
+                        filename: 'nyan cat ✔.gif',
+                        path: __dirname + '/nyan.gif',
+                        cid: 'nyan@example.com'
+                    }
+                ],
         }
         return mailOptions
     }

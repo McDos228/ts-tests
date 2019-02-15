@@ -1,5 +1,5 @@
 import {Request, Response, Router, NextFunction} from 'express';
-import {Tasks} from '../../service/tasks';
+import Tasks from '../../service/tasks';
 
 declare global {
     namespace Express {
@@ -38,6 +38,18 @@ class TaskRouter {
         }
     }
 
+    public async viewTask (req: Request, res: Response, next:NextFunction){
+        try {
+            const userId : number = req.query.userId;
+            const taskId = req.body.id;
+            const viewTask = await Tasks.viewOneTask(userId, taskId);
+            if(!viewTask) res.json({message:'some error'})
+            res.json(viewTask)
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
     public async updateTask (req: Request, res: Response, next:NextFunction){
         try {
             const updatedTask = await Tasks.updateTask(req.body);
@@ -65,6 +77,7 @@ class TaskRouter {
         this.router
             .post('/', this.createTask)
             .get('/', this.listTask)
+            .get('/:id', )
             .put('/', this.updateTask)
             .delete('/', this.deleteTask)
     }

@@ -2,12 +2,7 @@ import {Request, Response, Router, NextFunction} from 'express';
 import * as multer from 'multer';
 import VideoService from '../../service/video';
 import * as path from 'path';
-const upload = multer({ dest: 'uploads',  
-    filename: (req, file, cb)=> {
-        console.log('dsadads')
-        cb(null, file.originalname + '-' + Date.now() + '.' + file.extention )
-    } 
-});
+const upload = multer({ dest: 'uploads'});
 
 class VideoRouter {
     public router: Router = Router();
@@ -28,8 +23,7 @@ class VideoRouter {
 
     public async uploadVideo(req: Request, res: Response, next: NextFunction) {
         try {
-            // console.log('dsdsadasdad', req)
-            const savedVideo = await VideoService.saveVideo(path.join(`${__dirname}/uploads/${req.file.originalname}`), '11');
+            const savedVideo = await VideoService.saveVideo(path.join(`${__dirname}/uploads/${req.file.originalname}`), req.user._id);
             if(!savedVideo) res.json({msg : 'some error'})
             else res.json(savedVideo)
         } catch (error) {
