@@ -63,7 +63,7 @@ class TaskRouter {
 
     public async deleteTask (req: Request, res: Response, next:NextFunction){
         try {
-            const deletedTask = await Tasks.deleteTask(req.body.id);
+            const deletedTask = await Tasks.deleteTask(req.query.id);
             if(!deletedTask) 
                 return {message:'some error'}
             else 
@@ -77,7 +77,7 @@ class TaskRouter {
         this.router
             .post('/', this.createTask)
             .get('/', this.listTask)
-            .get('/:id', )
+            .get('/:id', this.viewTask)
             .put('/', this.updateTask)
             .delete('/', this.deleteTask)
     }
